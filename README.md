@@ -32,6 +32,15 @@ this directory as the root of a single static hosting project. Configure the
 deployed site origin in the game server's `ALLOWED_GAME_ORIGINS` setting so the
 games can read and submit scores from the unified origin.
 
+### Create a release
+
+In GitHub, open **Actions → Release → Run workflow**, select the branch or
+revision to release, and enter a semantic version without the `v` prefix (for
+example, `1.2.0`). The workflow creates the annotated tag `v1.2.0`, builds the
+site, and uploads `dist/` as a downloadable workflow artifact. The workflow
+requires the repository's Actions setting **Workflow permissions** to allow
+read and write access so it can push the tag.
+
 The original standalone game repositories are not modified by this migration.
 The source in this repository is the unified deployment copy.
 # POCKET ARCADE
