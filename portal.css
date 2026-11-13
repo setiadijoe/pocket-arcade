@@ -1,0 +1,384 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  font-family: "Space Grotesk", sans-serif;
+  color: #253626;
+  background: #e9ece0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ink: #253626;
+  --paper: #e9ece0;
+  --muted: #71806d;
+  --line: #c8d0bf;
+  --red: #c64e36;
+  --mono: "DM Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.arcade-shell {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.topline,
+.bottomline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  border-bottom: 1px solid var(--line);
+  font: 10px var(--mono);
+  letter-spacing: 0.1em;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 6px currentColor;
+}
+
+.edition {
+  color: var(--muted);
+}
+
+.edition span {
+  margin-left: 12px;
+  color: var(--ink);
+}
+
+.welcome {
+  max-width: 760px;
+  padding: clamp(56px, 9vw, 104px) 0 68px;
+}
+
+.eyebrow,
+.game-number,
+.player-form label,
+.game-count {
+  font: 10px var(--mono);
+  letter-spacing: 0.12em;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: var(--red);
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: clamp(40px, 8vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+}
+
+h1 span {
+  color: #83917c;
+}
+
+.intro {
+  margin-bottom: 32px;
+  color: #52634f;
+  font-size: 16px;
+}
+
+.player-form {
+  max-width: 580px;
+}
+
+.player-form label {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.player-entry {
+  display: flex;
+  gap: 8px;
+}
+
+.player-entry input {
+  min-width: 0;
+  flex: 1;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #aeb9a6;
+  border-radius: 0;
+  outline: none;
+  background: #f3f4ec;
+  color: var(--ink);
+  font: 12px var(--mono);
+}
+
+.player-entry input:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px #25362620;
+}
+
+.player-entry button,
+.game-action {
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 10px var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.player-entry button {
+  min-width: 148px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.player-entry button:hover {
+  background: #3e573d;
+}
+
+.player-status {
+  min-height: 18px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.player-status[data-error="true"] {
+  color: #a33324;
+}
+
+.game-section {
+  padding: 0 0 72px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 22px;
+  letter-spacing: -0.05em;
+}
+
+.game-count {
+  padding-bottom: 3px;
+  color: var(--muted);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.game-card {
+  display: flex;
+  min-height: 320px;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: #f0f1e9;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.game-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.game-card:not(:disabled):hover,
+.game-card:not(:disabled):focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--ink);
+  background: #f7f7f0;
+}
+
+.game-card:focus-visible,
+.player-entry button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.game-number {
+  color: var(--muted);
+}
+
+.game-art {
+  position: relative;
+  display: flex;
+  height: 108px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 13px 0;
+  overflow: hidden;
+  background-color: #dce2d2;
+}
+
+.snake-art::before {
+  width: 78px;
+  height: 42px;
+  border: 8px solid #425f3c;
+  border-right-color: transparent;
+  border-radius: 24px 24px 8px 8px;
+  content: "";
+}
+
+.snake-art::after {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -34px 0 0 74px;
+  border-radius: 50%;
+  background: var(--red);
+  content: "";
+}
+
+.tetris-art i,
+.breakout-art i {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #e9ece0;
+  background: #657f5a;
+}
+
+.tetris-art i:nth-child(2),
+.tetris-art i:nth-child(3),
+.tetris-art i:nth-child(5) {
+  background: var(--red);
+}
+
+.tetris-art i:nth-child(1),
+.tetris-art i:nth-child(6) {
+  transform: translateY(22px);
+}
+
+.breakout-art {
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 4px;
+  padding: 0 64px;
+}
+
+.breakout-art i {
+  width: 32px;
+  height: 12px;
+  border: 0;
+  background: #657f5a;
+}
+
+.breakout-art i:nth-child(2n) {
+  background: var(--red);
+}
+
+.game-name {
+  margin: 0 0 7px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+
+.game-description {
+  min-height: 36px;
+  color: #64735f;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.game-action {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 12px;
+}
+
+.bottomline {
+  min-height: 56px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card {
+    min-height: 285px;
+  }
+
+  .game-art {
+    height: 90px;
+  }
+}
+
+@media (max-width: 520px) {
+  .arcade-shell {
+    width: min(100% - 32px, 1120px);
+  }
+
+  .topline {
+    min-height: 64px;
+  }
+
+  .edition {
+    font-size: 8px;
+  }
+
+  .player-entry {
+    flex-direction: column;
+  }
+
+  .player-entry button {
+    height: 46px;
+  }
+
+  .bottomline {
+    font-size: 8px;
+  }
+}

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9ece0">
+  <title>Snake | Pocket Arcade</title>
+  <link rel="icon" type="image/svg+xml" href="./snake.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topline">
+      <a class="brand" href="/" aria-label="Pocket Arcade home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>POCKET ARCADE</span>
+      </a>
+      <div class="edition"><span>CLASSIC SERIES</span><span class="edition-number">01</span></div>
+    </header>
+
+    <main id="top">
+      <section class="game-layout" aria-label="Snake arcade game">
+        <div class="game-column">
+          <div class="page-title">
+            <div>
+              <p class="eyebrow">SCORE ATTACK / 01</p>
+              <h1>SNAKE</h1>
+            </div>
+            <span class="title-rule" aria-hidden="true"></span>
+          </div>
+
+          <div class="console">
+            <div class="console-header console-label">
+              <span>LCD DISPLAY</span>
+              <span>20 x 20</span>
+            </div>
+            <div class="screen">
+              <canvas class="game-canvas" id="game-board" width="400" height="400" role="img" aria-label="Snake game board" aria-describedby="game-status"></canvas>
+              <div class="screen-overlay" id="screen-overlay" aria-hidden="true">
+                <strong id="overlay-title">READY?</strong>
+                <span id="overlay-caption">INSERT COIN</span>
+              </div>
+            </div>
+            <div class="console-footer">
+              <span class="power-indicator"><i class="power-light" aria-hidden="true"></i>POWER</span>
+              <span>POCKET ARCADE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-panel">
+          <section class="leaderboard" aria-labelledby="leaderboard-title">
+            <div class="leaderboard-heading">
+              <h2 id="leaderboard-title">HIGH SCORES</h2>
+              <span class="desktop-score-count">TOP 3</span>
+              <span class="mobile-score-count">TOP 1</span>
+            </div>
+            <ol class="leaderboard-list" id="leaderboard-list" aria-live="polite">
+              <li class="leaderboard-message">Loading scores...</li>
+            </ol>
+            <button class="leaderboard-more" id="view-top-scores" type="button">VIEW ALL SCORES</button>
+          </section>
+
+          <aside class="side-panel" aria-label="Score and controls">
+            <div class="score-grid">
+              <div class="stat">
+                <span class="stat-label">Score</span>
+                <output class="stat-value" id="score-value">000</output>
+              </div>
+            </div>
+
+            <div class="pace-row">
+              <span class="pace-label">Level</span>
+              <span class="pace-value">
+                <span id="level-value">01</span>
+                <span class="speed-display"><span id="speed-value">2.0</span> moves/s</span>
+                <span class="pace-bars" id="pace-bars" aria-hidden="true"></span>
+              </span>
+            </div>
+
+            <button class="game-button primary-button" id="play-button" type="button">START</button>
+
+            <div class="control-block">
+              <fieldset class="hand-preference">
+                <legend>PLAYING HAND</legend>
+                <button class="hand-option" type="button" data-hand="left" aria-label="Left-handed controls" aria-pressed="false">LEFT</button>
+                <button class="hand-option" type="button" data-hand="right" aria-label="Right-handed controls" aria-pressed="true">RIGHT</button>
+              </fieldset>
+              <p class="control-heading">DIRECTION</p>
+              <div class="d-pad" aria-label="Touch direction controls">
+                <button class="direction-button direction-up" type="button" data-direction="up" aria-label="Move up"></button>
+                <button class="direction-button direction-left" type="button" data-direction="left" aria-label="Move left"></button>
+                <span class="direction-button direction-center" aria-hidden="true"></span>
+                <button class="direction-button direction-right" type="button" data-direction="right" aria-label="Move right"></button>
+                <button class="direction-button direction-down" type="button" data-direction="down" aria-label="Move down"></button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <dialog class="score-dialog" id="score-dialog" aria-labelledby="score-dialog-title">
+        <form class="score-dialog-form" id="score-form">
+          <h2 id="score-dialog-title" class="sr-only">GAME OVER</h2>
+          <p class="score-dialog-value">SCORE <output id="game-over-score">000</output></p>
+          <p class="score-dialog-error" id="score-dialog-error" role="alert" hidden></p>
+          <div class="score-dialog-actions">
+            <button class="dialog-cancel" id="main-menu" type="button">MAIN MENU</button>
+            <button class="dialog-cancel" id="cancel-score" type="button">CANCEL</button>
+            <button class="dialog-submit" id="submit-score" type="submit">SAVE</button>
+            <button class="dialog-cancel" id="retry-game" type="button">RETRY</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="score-dialog high-scores-dialog" id="high-scores-dialog" aria-labelledby="high-scores-title">
+        <div class="high-scores-dialog-content">
+          <p class="eyebrow">LEADERBOARD</p>
+          <h2 id="high-scores-title">HIGH SCORES</h2>
+          <ol class="leaderboard-list" id="high-scores-list" aria-live="polite">
+            <li class="leaderboard-message">Loading scores...</li>
+          </ol>
+          <div class="score-dialog-actions">
+            <button class="dialog-cancel" id="close-high-scores" type="button">CLOSE</button>
+          </div>
+        </div>
+      </dialog>
+
+      <p class="sr-only" id="game-status" role="status" aria-live="polite">Ready to play</p>
+      <p class="sr-only" id="hand-preference-status" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="bottomline">
+      <span>POCKET ARCADE</span>
+      <span>EST. 1988 / GAME 01</span>
+    </footer>
+  </div>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
